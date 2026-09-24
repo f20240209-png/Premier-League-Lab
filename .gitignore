@@ -1,0 +1,23 @@
+# Secrets
+.env
+
+# Python junk
+__pycache__/
+*.pyc
+venv/
+
+# Local Database (You use Railway now)
+*.db
+football.db
+
+# Tools (Zrok, etc.)
+zrok.exe
+zrok_*/
+*.zip
+.env.*
+!.env.example
+instance/
+.pytest_cache/
+.venv/
+*.sqlite3
+*.tar.gz

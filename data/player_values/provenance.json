@@ -1,0 +1,67 @@
+{
+  "source": "https://github.com/dcaribou/transfermarkt-datasets",
+  "download_base": "https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data",
+  "source_sha256": {
+    "players": "d22e407981d5b51a79bf8ff59835729f3526f7dc3495a6d8ed2f852ed2e86403",
+    "games": "142561989017d379bcf9e72bad0b87e0996bae0e7b710ebb3def9255f464c741",
+    "appearances": "e096c2b158fc3d52c4550526c4d4850dd62f31007652f4bcae112eadb1646802",
+    "player_valuations": "608e32e5ad2231074f3505c469ad727be66d7e6efda6af918afd85379439631d"
+  },
+  "prepared_at": "2026-09-22T14:24:19.082395+00:00",
+  "coverage": {
+    "2021": {
+      "games": 380,
+      "player_seasons": 508,
+      "eligible_stats": 395,
+      "labelled": 394,
+      "season_end": "2022-05-22",
+      "label_window_end": "2022-08-01"
+    },
+    "2022": {
+      "games": 380,
+      "player_seasons": 554,
+      "eligible_stats": 408,
+      "labelled": 407,
+      "season_end": "2023-05-28",
+      "label_window_end": "2023-08-01"
+    },
+    "2023": {
+      "games": 380,
+      "player_seasons": 570,
+      "eligible_stats": 404,
+      "labelled": 404,
+      "season_end": "2024-05-19",
+      "label_window_end": "2024-08-01"
+    },
+    "2024": {
+      "games": 380,
+      "player_seasons": 562,
+      "eligible_stats": 397,
+      "labelled": 390,
+      "season_end": "2025-05-25",
+      "label_window_end": "2025-08-01"
+    },
+    "2025": {
+      "games": 380,
+      "player_seasons": 537,
+      "eligible_stats": 400,
+      "labelled": 399,
+      "season_end": "2026-05-24",
+      "label_window_end": "2026-08-01"
+    }
+  },
+  "position_note": "Position is the downloaded profile position, not a dated historical position.",
+  "target": "Transfermarkt estimated market value in EUR, not a transfer fee.",
+  "eligibility": "At least 450 EPL minutes with complete known goals, assists and minutes. First valuation after final league match, within 75 days and by August 1.",
+  "data_note": "Published data is historical and may be incomplete. Dataset updates were paused in July 2026; 2026/27 is not covered.",
+  "format_version": 1,
+  "dataset_sha256": "908ba8de1a673ffcb3b560d1a2323f3ef2f7293b5c7950d9ebfd6e53042a8eaa",
+  "row_count": 1994,
+  "seasons": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}

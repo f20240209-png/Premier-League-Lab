@@ -1,0 +1,175 @@
+{
+  "downloaded_assets": [
+    {
+      "file": "clubs/arsenal.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t3.png"
+    },
+    {
+      "file": "clubs/aston-villa.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t7.png"
+    },
+    {
+      "file": "clubs/bournemouth.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t91.png"
+    },
+    {
+      "file": "clubs/brentford.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t94.png"
+    },
+    {
+      "file": "clubs/brighton.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t36.png"
+    },
+    {
+      "file": "clubs/chelsea.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t8.png"
+    },
+    {
+      "file": "clubs/crystal-palace.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t31.png"
+    },
+    {
+      "file": "clubs/everton.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t11.png"
+    },
+    {
+      "file": "clubs/fulham.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t54.png"
+    },
+    {
+      "file": "clubs/ipswich.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t40.png"
+    },
+    {
+      "file": "clubs/leicester.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t13.png"
+    },
+    {
+      "file": "clubs/liverpool.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t14.png"
+    },
+    {
+      "file": "clubs/man-city.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t43.png"
+    },
+    {
+      "file": "clubs/man-united.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t1.png"
+    },
+    {
+      "file": "clubs/newcastle.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t4.png"
+    },
+    {
+      "file": "clubs/nottingham.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t17.png"
+    },
+    {
+      "file": "clubs/southampton.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t20.png"
+    },
+    {
+      "file": "clubs/tottenham.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t6.png"
+    },
+    {
+      "file": "clubs/west-ham.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t21.png"
+    },
+    {
+      "file": "clubs/wolves.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t39.png"
+    },
+    {
+      "file": "clubs/leeds.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t2.png"
+    },
+    {
+      "file": "clubs/burnley.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t90.png"
+    },
+    {
+      "file": "clubs/sunderland.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t56.png"
+    },
+    {
+      "file": "clubs/luton.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t102.png"
+    },
+    {
+      "file": "clubs/sheffield-united.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t49.png"
+    },
+    {
+      "file": "clubs/coventry.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t9.png"
+    },
+    {
+      "file": "clubs/hull.png",
+      "source": "https://resources.premierleague.com/premierleague/badges/t88.png"
+    },
+    {
+      "file": "players/204480.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p204480.png"
+    },
+    {
+      "file": "players/219847.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p219847.png"
+    },
+    {
+      "file": "players/244851.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p244851.png"
+    },
+    {
+      "file": "players/219168.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p219168.png"
+    },
+    {
+      "file": "players/209244.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p209244.png"
+    },
+    {
+      "file": "players/223094.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p223094.png"
+    },
+    {
+      "file": "players/95658.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p95658.png"
+    },
+    {
+      "file": "players/141746.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p141746.png"
+    },
+    {
+      "file": "players/446008.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p446008.png"
+    },
+    {
+      "file": "players/176297.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p176297.png"
+    },
+    {
+      "file": "players/184341.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p184341.png"
+    },
+    {
+      "file": "players/209046.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p209046.png"
+    },
+    {
+      "file": "players/172780.png",
+      "source": "https://resources.premierleague.com/premierleague/photos/players/250x250/p172780.png"
+    },
+    {
+      "file": "pep-thinking.jpg",
+      "source": "https://s.yimg.com/ny/api/res/1.2/oD1kW7wDlmwEuT1oJnwmYw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNztjZj13ZWJw/https%3A/media.zenfs.com/en/ap.org/2feea0d916f168ad7eb89c5420f56981",
+      "credit": "Associated Press via Yahoo Sports"
+    }
+  ],
+  "player_identity_source": "https://fantasy.premierleague.com/api/bootstrap-static/",
+  "user_supplied": [
+    "premier-league.png",
+    "trophy.png",
+    "derby.png"
+  ]
+}

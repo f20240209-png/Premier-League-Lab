@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}Premier League Lab{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body class="page-{{ request.endpoint }}">
+<a class="skip" href="#main">Skip to content</a>
+<header class="header">
+  <a class="brand" href="{{ page_url('home') }}"><span class="brand-icon"><img src="{{ url_for('static', filename='media/premier-league.png') }}" alt="Premier League"></span><span>Premier League <strong>Lab</strong></span></a>
+  <div class="header-actions"><span class="eyebrow">INDEPENDENT FOOTBALL ANALYTICS</span><a href="{{ url_for('admin') if session.get('role') == 'admin' else url_for('login') }}">Admin ↗</a></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+  <div class="nav-label">EXPLORE THE LEAGUE</div>
+  <nav aria-label="Main navigation">
+  {% for endpoint, label, path in [('home','Overview','/'),('teams_list','Clubs','/teams'),('fixtures','Fixtures & results','/fixtures'),('compare','Compare clubs','/compare'),('predictions','Predictions','/predictions'),('what_if','What if?','/what-if'),('top_scorers','Player leaders','/top-scorers'),('player_values','Player value','/player-values')] %}
+    <a class="nav-link {{ 'active' if request.path == path or (endpoint == 'top_scorers' and request.endpoint == 'top_assists') else '' }}" href="{{ page_url(endpoint) }}">{{ label }}<span>↗</span></a>
+  {% endfor %}
+  </nav>
+  <div class="sidebar-note"><span class="small-dot"></span>Your football, in focus<p>Explore form. Compare clubs.<br>Understand the numbers.</p></div>
+</aside>
+<main id="main">
+  {% if request.endpoint not in ['player_values', 'value_plot'] %}<div class="toolbar"><span class="eyebrow">THE SEASON, IN PERSPECTIVE</span><a id="favorite-shortcut" class="button small" data-season="{{ selected.id if selected else '' }}" href="{{ page_url('teams_list') }}" hidden>Favourite club</a>
+  {% if seasons %}<form action="{{ url_for('home') }}" method="get" class="season-picker"><label for="season">Season</label><select name="season" id="season">{% for s in seasons %}<option value="{{ s.id }}" {{ 'selected' if selected and selected.id == s.id else '' }}>{{ s.year }}/{{ (s.year + 1)|string }} · {{ {'demo': 'DEMO', 'api-football': 'API-Football', 'bigballs': 'Big Balls Data', 'football-data': 'football-data.org'}.get(s.provider, s.provider) }}</option>{% endfor %}</select><button class="button small" type="submit">View</button></form>{% endif %}</div>
+  {% if selected and selected.provider == 'demo' %}<div class="notice demo"><strong>Synthetic demo</strong> · Fixtures, results, players and model scores here are fictional test data.</div>{% endif %}
+  {% endif %}
+  {% block content %}{% endblock %}
+  <footer>Independent student project · Not affiliated with the Premier League.<br>{% if request.endpoint == 'player_values' %}Player value source: Transfermarkt via dcaribou/transfermarkt-datasets. Historical EUR estimates.{% elif selected %}Source: {{ {'demo': 'Synthetic offline demo', 'api-football': 'API-Football', 'bigballs': 'Big Balls Data', 'football-data': 'football-data.org'}.get(selected.provider, selected.provider) }} · Last fixture import: {{ selected.synced_at.strftime('%d %b %Y, %H:%M UTC') if selected.synced_at else 'Not yet imported' }}{% endif %}</footer>
+</main>
+</div>
+{% if selected and club_ids and request.endpoint != 'player_values' %}
+<button id="chat-toggle" class="chat-toggle" aria-controls="chat-panel" aria-expanded="false">Ask the analyst <span>↗</span></button>
+<section id="chat-panel" class="chat-panel" hidden aria-label="Football analyst">
+  <div class="chat-heading"><strong>Football analyst</strong><button id="chat-close" aria-label="Close analyst">×</button></div>
+  <p class="muted">Explains the selected season’s data. {{ 'AI is ready.' if ai_enabled else 'AI is not configured yet.' }}</p>
+  <form id="chat-form" action="{{ page_url('ask_ai') }}" method="post"><label for="chat-team">Club</label><select id="chat-team">{% for tid in club_ids|sort %}<option value="{{ tid }}">{{ teams[tid].name }}</option>{% endfor %}</select>
+  <label for="chat-question">Your question</label><textarea id="chat-question" maxlength="1000" rows="3" placeholder="How has this club performed at home?" required></textarea><button class="button primary" type="submit">Ask</button></form>
+  <p id="chat-answer" role="status" aria-live="polite"></p>
+</section>
+{% endif %}
+</body></html>

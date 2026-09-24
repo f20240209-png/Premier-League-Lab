@@ -1,0 +1,13 @@
+<section class="panel padded" id="club-squad">
+<div class="section-heading compact"><div><span class="eyebrow">THE PLAYERS</span><h2>{{ team.name }} squad</h2></div>{% if roster %}<span class="tag">{{ roster.players|length }} FPL-LISTED PLAYERS</span>{% endif %}</div>
+{% if roster %}
+<p class="squad-source">{{ roster.year }}/{{ roster.year+1 }} · {{ roster.source }} · Snapshot {{ roster.date }}</p>
+<p class="table-note squad-coverage">{{ roster.coverage }}</p>
+<div class="squad-controls"><label>Find a player<input id="squad-search" type="search" placeholder="Search this squad…"></label><label>Position<select id="squad-position"><option value="">All positions</option>{% for position in roster.positions %}<option value="{{ position }}">{{ position }}</option>{% endfor %}</select></label><span id="squad-count" role="status">{{ roster.players|length }} players</span></div>
+<div class="squad-grid">{% for p in roster.players %}<article class="squad-card" data-squad-player data-player-name="{{ p.name }} {{ p.display_name }}" data-position="{{ p.position }}">
+<div class="squad-photo"><img src="{{ squad_portrait(p.photo) }}" alt="{{ p.name }}" loading="lazy" width="160" height="160" data-image-fallback><span class="portrait-fallback" hidden aria-hidden="true">{{ p.name.split()[0][0] }}{{ p.name.split()[-1][0] }}</span></div>
+<div class="squad-card-body"><span class="eyebrow">{{ p.position }}</span><h3>{{ p.display_name }}</h3><p class="squad-full-name">{{ p.name }}</p><span class="squad-status">FPL status: {{ p.status }}</span><div class="squad-totals"><span><strong>{{ p.minutes if p.minutes is not none else '—' }}</strong>Minutes</span><span><strong>{{ p.goals if p.goals is not none else '—' }}</strong>Goals</span></div></div>
+</article>{% endfor %}</div><p id="squad-empty" class="empty" hidden>No players match those filters.</p>
+<p class="table-note">Minutes and goals are from this FPL snapshot. These records do not replace historical club statistics or enter the valuation model.</p>
+{% else %}<p class="empty">A squad list is not available for this club in the selected season. Current player lists are never shown as historical squads.</p>{% endif %}
+</section>
