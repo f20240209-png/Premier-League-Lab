@@ -2,6 +2,10 @@
 
 # Premier League Lab
 
+**V9 deployment preparation:** follow [DEPLOYMENT.md](DEPLOYMENT.md). Includes
+PostgreSQL support, shared production rate limiting, guarded database migration,
+Render configuration and CI. Nothing is deployed automatically by this ZIP.
+
 A Flask football analytics application with season-aware storage, API-Football
 imports, team comparisons and an evaluated match-outcome model.
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 from sqlalchemy import (create_engine, event, String, Integer, Float, DateTime,
                         ForeignKey, UniqueConstraint, CheckConstraint, JSON, Text)
-from sqlalchemy.engine import URL
+from sqlalchemy.engine import URL, make_url
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 
@@ -161,8 +161,15 @@ def database_url():
     return f"sqlite:///{root / 'football.sqlite3'}"
 
 
+def normalized_url(url):
+    parsed = make_url(url)
+    if parsed.drivername in ('postgres', 'postgresql'):
+        parsed = parsed.set(drivername='postgresql+psycopg')
+    return parsed
+
+
 def open_database(url=None):
-    engine = create_engine(url or database_url(), pool_pre_ping=True)
+    engine = create_engine(normalized_url(url or database_url()), pool_pre_ping=True)
     if engine.dialect.name == "sqlite":
         @event.listens_for(engine, "connect")
         def foreign_keys(connection, _):

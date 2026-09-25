@@ -9,7 +9,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from sqlalchemy import select
+from sqlalchemy import select, text
+from sqlalchemy.exc import SQLAlchemyError
 from werkzeug.security import check_password_hash
 
 from league.storage import open_database, Season, Team, Match, PlayerSeason, PlayerLeaderboard, SyncRun, ModelRun, Forecast, ValueModel
@@ -25,8 +26,15 @@ def create_app(config=None):
     app = Flask(__name__)
     production = os.getenv('APP_ENV') == 'production'
     key = os.getenv('FLASK_SECRET_KEY')
-    if production and not key:
-        raise RuntimeError('FLASK_SECRET_KEY is required in production.')
+    if production:
+        if not key or len(key) < 32:
+            raise RuntimeError('Production requires a FLASK_SECRET_KEY of at least 32 characters.')
+        if not os.getenv('DATABASE_URL'):
+            raise RuntimeError('DATABASE_URL is required in production.')
+        if os.getenv('COOKIE_SECURE', '').lower() != 'true':
+            raise RuntimeError('Production requires COOKIE_SECURE=true and HTTPS.')
+        if not os.getenv('RATELIMIT_STORAGE_URI', '').startswith(('redis://', 'rediss://')):
+            raise RuntimeError('Production requires shared Redis rate-limit storage.')
     app.config.update(SECRET_KEY=key or secrets.token_hex(32), MAX_CONTENT_LENGTH=16384,
         SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
         SESSION_COOKIE_SECURE=os.getenv('COOKIE_SECURE', 'false').lower() == 'true',
@@ -43,6 +51,8 @@ def create_app(config=None):
 
     @app.before_request
     def connect():
+        if request.endpoint == 'health' or request.endpoint == 'static':
+            return
         g.db = factory()
         g.seasons = list(g.db.scalars(select(Season).order_by(Season.provider, Season.year.desc())))
         g.seasons.sort(key=lambda s: (s.provider == 'demo', -s.year, s.provider))
@@ -61,6 +71,20 @@ def create_app(config=None):
     def close(_error=None):
         if 'db' in g:
             g.db.close()
+
+    @app.get('/health')
+    @limiter.exempt
+    def health():
+        try:
+            with engine.connect() as connection:
+                connection.execute(text('SELECT 1'))
+            return jsonify(status='ok')
+        except SQLAlchemyError:
+            return jsonify(status='unavailable'), 503
+
+    @app.errorhandler(500)
+    def server_error(_error):
+        return 'Something went wrong. Please try again later.', 500
 
     @app.after_request
     def headers(response):
@@ -98,11 +122,6 @@ def create_app(config=None):
         if request.is_json:
             return jsonify(error='Too many requests. Please try again shortly.'), 429
         return render_template('error.html', message='Too many requests. Please try again shortly.'), 429
-
-    @app.route('/health')
-    def health():
-        g.db.execute(select(1))
-        return jsonify(status='ok')
 
     @app.route('/')
     def home():

@@ -1,5 +1,21 @@
 # Upgrade validation — 22 September 2026
 
+## V9: deployment preparation — 25 September 2026
+
+- 98 tests passed locally; one PostgreSQL integration test skipped because a
+  PostgreSQL server is unavailable and installation was denied in this runtime.
+- Added URL normalization, production configuration guards, isolated health
+  checks with sanitized database failures, and PostgreSQL DDL compilation tests.
+- Gunicorn two-worker startup and HTTP health check verified with temporary SQLite.
+- Render YAML parsed locally and plan names checked against official documentation;
+  no Render API validation or live deployment performed.
+- CI provisions disposable PostgreSQL 17 and tests dry-run, transactional copy,
+  JSON/Unicode/timestamp preservation, ID sequence continuation and refusal to
+  overwrite populated targets. This CI run has not yet been executed here.
+- No production data, API credentials, GitHub push or paid resources were used.
+- Redis connectivity, provider imports and migration of the user's actual local
+  database remain launch checks in DEPLOYMENT.md. Automatic sync is deferred.
+
 ## V8: squads and portraits
 
 - Existing 80 tests and 8 new squad tests passed. New checks cover validation,
